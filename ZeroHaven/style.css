@@ -1,0 +1,160 @@
+.main{
+    /* width:fit-content; */
+    background-image: linear-gradient(to top, rgba(0,0,0,0.5),rgba(0,0,0,0)50%), url(Background.jpeg);
+    background-position: left;
+    background-size: cover; 
+    /* height: fit-content; */
+}
+
+.navbar{
+    width:90%;
+    height: 50px;
+    margin-top: 25px;    
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.logo{
+    background-color: rgba(62, 66, 46, 0.536);
+    color: gold;
+    font-size: 32px;
+    text-align: center;
+    font-family: cursive;
+    border-radius: 25px;
+    border-color: gold;
+    border-style:solid ;
+}
+
+.icon{
+    width: 250px;
+    padding-right: 75px;
+    float: left;
+}
+.menu{
+    margin-top: 20px;
+    width: 70%;
+    float: left;
+    height: 60px;
+    background-color: rgb(245, 228, 198);
+    border-radius: 25px;
+    border-color: gold;
+    border-style: solid;
+}
+
+ul{
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ul li{
+    list-style: none;
+    margin-left: 150px;
+    font-size: 25px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;   
+}
+
+ul li a{
+    text-decoration: none;
+    color: goldenrod;
+    transition: ease-in-out 10ms;
+}
+
+ul li a:hover{
+    color: black;
+}
+ul li a:active {
+    color: gray;
+}
+
+.signup{
+    margin-left: 25px;
+    height: 75%;
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    background-color:wheat;
+    border-radius: 25px;
+    border-color: gold;
+    border-style: solid;
+}
+
+.signupform{
+    margin-right: 60px;
+    padding-left: 45px;
+    padding-top: 30px;
+    padding-bottom: 45px;
+    padding-right: 45px;
+    background-color: white;
+    border-radius: 35px;
+    border-color: gold;
+    border-style: solid;
+}
+
+.logintext{
+    padding-left: 20px;
+    font-size: 45px;
+    font-weight: 1000;
+    font-family: Arial, Helvetica, sans-serif;
+    align-items: center;
+    justify-content: center;
+    color:gold;
+}
+
+.input-field{
+    width: 100%;
+    margin-bottom: 15px;
+    height: 30px;
+    border-radius: 10px;
+    border-color: gold;
+    border-style: solid;
+}
+.submitbutton{
+    width: 100%;
+    margin-bottom: 15px;
+    height: 30px;
+    border-radius: 10px;
+    background-color:wheat;
+    border-color: gold;
+    border-style: solid;
+}
+
+.submitbutton:hover{
+    background-color: gold;
+}
+
+.signupbutton{
+    text-decoration: none;
+    color: goldenrod;
+}
+
+.signupbutton:hover{
+    text-decoration: underline;
+    color: goldenrod;
+}
+
+.SuccessfulRegistration{
+    width: 100%;
+    /* height: 85vh; */
+    /* margin: 45px; */
+    height: 90vh;
+    border-radius: 25px;
+    background-color: wheat;
+    justify-content: center;
+    align-items: center;
+}
+
+.af{
+    justify-content: center;
+    align-items: center;
+}
+
+.b{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 85vh;
+}
