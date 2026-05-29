@@ -1,0 +1,179 @@
+/* --- Base Container --- */
+.phase-one-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #050505;
+  color: #e0e0e0;
+  font-family: 'Courier New', Courier, monospace; /* Classic terminal font */
+}
+
+/* --- Layer 1: Background Video & Murkiness --- */
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  filter: grayscale(80%) contrast(120%) brightness(0.6);
+}
+
+.video-background video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* A pulsing dark gradient to make the video feel unstable */
+.murky-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(circle, rgba(0,0,0,0) 20%, rgba(0,0,0,0.85) 100%);
+  animation: pulseDarkness 8s infinite alternate;
+}
+
+/* --- Layer 2: Terminal UI --- */
+.portfolio-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 2rem;
+  text-align: center;
+}
+
+.terminal-header {
+  margin-bottom: 4rem;
+}
+
+/* Excessive Chromatic Aberration Text */
+.glitch-text {
+  font-size: 4rem;
+  font-weight: bold;
+  letter-spacing: 0.2rem;
+  position: relative;
+  color: #fff;
+  text-shadow: 
+    3px 0px 1px rgba(255, 0, 0, 0.7), 
+    -3px 0px 1px rgba(0, 255, 255, 0.7);
+  animation: textFlicker 3s infinite;
+}
+
+.sub-text {
+  font-size: 1.2rem;
+  color: #888;
+  opacity: 0.8;
+}
+
+/* Creepy Navigation Buttons */
+.terminal-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.nav-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem 3rem;
+  color: #aaa;
+  font-family: inherit;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-btn:hover {
+  color: #fff;
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+  text-shadow: 2px 0px 4px rgba(255, 0, 0, 0.8);
+  transform: scale(1.05) skewX(-2deg);
+}
+
+/* --- Layer 3: CRT & Screen Effects (The Overkill) --- */
+
+/* Scanlines */
+.crt-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 50;
+  pointer-events: none; /* Crucial: lets you click the buttons underneath */
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  animation: scanlineScroll 10s linear infinite;
+}
+
+/* Dirty screen edges */
+.vignette {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 51;
+  pointer-events: none;
+  box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.9);
+}
+
+/* --- Animations --- */
+@keyframes pulseDarkness {
+  0% { opacity: 0.8; }
+  100% { opacity: 1; }
+}
+
+@keyframes scanlineScroll {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100vh; }
+}
+
+@keyframes textFlicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.2; transform: skewX(2deg); }
+}
+
+/* --- Phase 2: Escalation Styles --- */
+.darker-murk {
+  background: radial-gradient(circle, rgba(0,0,0,0.5) 10%, rgba(0,0,0,0.95) 100%);
+  animation: none; /* Stops pulsing, feels dead and still */
+}
+
+.red-warning {
+  color: #ff3333 !important;
+  border-color: #ff3333 !important;
+  animation: textFlicker 1s infinite;
+}
+
+/* Sudden screen tear effect */
+.severe-glitch {
+  filter: invert(100%) hue-rotate(90deg);
+  transform: translateX(-10px) skewX(5deg);
+}
+
+/* --- Phase 3: The Jumpscare --- */
+.jumpscare-layer {
+  position: absolute;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: 9999; /* Above absolutely everything */
+  background: black;
+  animation: flashRed 0.1s infinite alternate;
+}
+
+.jumpscare-layer video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(200%) brightness(150%) saturate(0%);
+}
+
+@keyframes flashRed {
+  0% { box-shadow: inset 0 0 0px red; }
+  100% { box-shadow: inset 0 0 200px red; }
+}
