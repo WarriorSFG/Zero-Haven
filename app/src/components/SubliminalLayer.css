@@ -1,0 +1,47 @@
+.subliminal-flash {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mix-blend-mode: hard-light;
+}
+
+.subliminal-flash img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  filter: contrast(200%) saturate(0%) brightness(180%);
+}
+
+.subliminal-text {
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'VT323', monospace;
+  font-size: clamp(3rem, 8vw, 7rem);
+  color: #cc0000;
+  text-shadow:
+    0 0 20px #cc0000,
+    0 0 60px #8b0000,
+    4px 0 2px rgba(0,255,255,0.5);
+  animation: bleedIn 0.1s ease-out forwards, bleedOut 0.3s 1.5s ease-in forwards;
+  letter-spacing: 0.3em;
+  mix-blend-mode: screen;
+}
+
+@keyframes bleedIn {
+  from { opacity: 0; transform: scale(1.2) skewX(-5deg); }
+  to   { opacity: 1; transform: scale(1) skewX(0deg); }
+}
+
+@keyframes bleedOut {
+  from { opacity: 1; }
+  to   { opacity: 0; transform: scale(0.95); }
+}

@@ -1,70 +1,112 @@
-# Getting Started with Create React App
+# 💀 HORROR PORTFOLIO — Setup Guide
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A multi-phase horror portfolio that escalates from creepy to terrifying as the
+visitor browses. Built with React, no external dependencies beyond `react-scripts`.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Quick Start
 
-### `npm start`
+```bash
+npm install
+npm start
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [http://localhost:3000](http://localhost:3000).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## File Structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+src/
+├── App.js                         # Root — wires HorrorProvider + phase routing
+├── App.css                        # Global CSS vars, fonts, cursor corruption
+│
+├── context/
+│   └── HorrorContext.js           # Global horror state + escalation logic
+│
+└── components/
+    ├── AudioEngine.js             # Mounts all audio elements (invisible)
+    ├── SubliminalLayer.js         # Flash images + scary text overlays
+    ├── CRTOverlay.js              # Reusable scanlines / vignette / noise
+    │
+    ├── PhaseOne.js / .css         # Landing screen (video loop)
+    ├── PhaseTwo.js / .css         # Main portfolio (sidebar + sections)
+    ├── PhaseThree.js / .css       # Jumpscare + broken terminal end screen
+    │
+    └── sections/
+        ├── AboutSection.js        # Bio + terminal window + stat cards
+        ├── ProjectsSection.js     # Project cards grid
+        ├── SkillsSection.js       # Skill bars that drain as horror escalates
+        ├── ContactSection.js      # Contact form (triggers the jumpscare)
+        └── Section.css            # Shared styles for all four sections
+```
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Required Assets
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Place these in `/public/assets/`:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+| File               | What it is                                         |
+|--------------------|----------------------------------------------------|
+| `room-tone.mp3`    | Looping ambient drone / unsettling background hum  |
+| `wet-crawl.mp3`    | Short SFX — plays on escalation events             |
+| `scream.mp3`       | Jumpscare scream — plays at Phase 3                |
+| `empty-well.mp4`   | Background video that loops on landing screen      |
+| `jumpscare.mp4`    | ~2–3 second jumpscare clip (black + white works)   |
+| `scary1.jpg`       | Subliminal flash image #1                          |
+| `scary2.jpg`       | Subliminal flash image #2                          |
+| `scary3.jpg`       | Subliminal flash image #3                          |
 
-### `npm run eject`
+> **Tip for jumpscare images:** High-contrast face close-ups (greyscale) work
+> best because they flash for under 200ms. Your brain processes them before
+> your eyes can consciously register them.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Customisation Checklist
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Search the codebase for these placeholders and replace them:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- `[YOUR_NAME]` — your full name
+- `[YOUR_ROLE]` — e.g. "Full Stack Developer"
+- `[YOUR_CITY]` — e.g. "Mumbai, India"
+- `[YOUR_EMAIL]` — your email address
+- `[YOUR_HANDLE]` — your GitHub and LinkedIn username
+- `[INSERT PROJECT TITLE HERE]` — project names in `ProjectsSection.js`
+- `[INSERT PROJECT DESCRIPTION HERE]` — project descriptions
+- `[TECH]` — technology tags per project
+- `[SKILL NAME]` — skill names in `SkillsSection.js`
+- `[INSERT CERTIFICATION / ACHIEVEMENT HERE]` — in SkillsSection extras
+- `[INSERT PERSONAL BIO / DESCRIPTION HERE]` — in `AboutSection.js`
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Horror Escalation Map
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+| Interaction # | Event                                              |
+|---------------|----------------------------------------------------|
+| 1–2           | Phase 1 — Landing. `horrorLevel` ticks up quietly  |
+| 3             | Phase 2 unlocks. Glitch + wet crawl SFX fires      |
+| 5             | Random subliminal image flash                      |
+| 7             | Longer glitch, UI filter darkens                   |
+| 9             | Flash image again, cursor becomes a red crosshair  |
+| 11            | Scary text bleeds in for 2 seconds                 |
+| 12+           | **Phase 3 triggered.** Jumpscare + end screen      |
 
-### Code Splitting
+Every nav click, project hover, skill click, form focus, and link click counts
+as one interaction. You can tune the thresholds in `HorrorContext.js`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## Tuning Tips
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **Make it longer:** Change `count >= 12` to `count >= 20` in `HorrorContext.js`
+  for a more drawn-out experience.
+- **More flash images:** Add more paths to the `scaryImages` array in `HorrorContext.js`.
+- **Different SFX per event:** Call `playSFX('/assets/your-sound.mp3')` from any
+  section's `onClick` handler.
+- **Disable jumpscare on Contact only:** Remove `executeJumpscare()` from
+  `ContactSection.js` and keep it only on the count threshold.
