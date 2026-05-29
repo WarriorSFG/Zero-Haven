@@ -60,7 +60,7 @@ const PhaseTwo = () => {
       <aside className="p2-sidebar">
         <div className="p2-logo">
           <span className="logo-bracket">{'{ '}</span>
-          <span className="logo-name">[YOUR_NAME]</span>
+          <span className="logo-name">Samarth</span>
           <span className="logo-bracket">{' }'}</span>
         </div>
 

@@ -5,33 +5,33 @@ import './Section.css';
 const PROJECTS = [
   {
     id: 1,
-    title: '[INSERT PROJECT TITLE HERE]',
-    description: '[INSERT PROJECT DESCRIPTION HERE. What did you build? What problem does it solve? 2 sentences.]',
-    tags: ['[TECH]', '[TECH]', '[TECH]'],
-    link: '#',
+    title: 'ORION SECURITY MIDDLEWARE',
+    description: 'Architected an 8-stage security middleware that screens LLM prompts for jailbreaks and copyrighted code. It streams NDJSON updates to a React UI while performing real-time PII anonymization and harm analysis.',
+    tags: ['React', 'Node.js', 'Azure'],
+    link: 'https://github.com/WarriorSFG/Goldilocks',
     status: 'DEPLOYED',
   },
   {
     id: 2,
-    title: '[INSERT PROJECT TITLE HERE]',
-    description: '[INSERT PROJECT DESCRIPTION HERE. What did you build? What problem does it solve? 2 sentences.]',
-    tags: ['[TECH]', '[TECH]', '[TECH]'],
-    link: '#',
+    title: 'SECRETLY ON-CHAIN MESSENGER',
+    description: 'Developed a gas-optimized messaging protocol on Arbitrum L2 that utilizes Solidity events to slash transaction costs by 99.3%. It implements meta-transactions via BN254 BLS cryptography to completely eliminate sender fees.',
+    tags: ['Solidity', 'Ethereum', 'Web3'],
+    link: 'https://github.com/Web3Assam/jubilant-waffle',
     status: 'DEPLOYED',
   },
   {
     id: 3,
-    title: '[INSERT PROJECT TITLE HERE]',
-    description: '[INSERT PROJECT DESCRIPTION HERE. What did you build? What problem does it solve? 2 sentences.]',
-    tags: ['[TECH]', '[TECH]'],
-    link: '#',
+    title: 'CHAT CATALYST',
+    description: 'Engineered a Chrome Extension for WhatsApp Web that integrates Gemini 2.5 Flash for real-time AI autocomplete and tone-aware rewrites. It secures user API keys using AES-GCM encryption within a background service worker.',
+    tags: ['JavaScript', 'Gemini API', 'React'],
+    link: 'https://github.com/WarriorSFG/Chat-Catalyst',
     status: 'IN_PROGRESS',
   },
   {
     id: 4,
-    title: '[INSERT PROJECT TITLE HERE]',
-    description: '[INSERT PROJECT DESCRIPTION HERE. What did you build? What problem does it solve? 2 sentences.]',
-    tags: ['[TECH]', '[TECH]', '[TECH]'],
+    title: 'THE PRODIGAL SUN',
+    description: 'Shipped a fast-paced 3D rogue-like survival game that secured 1st Position at the Kriti Game Jam 2026. Built within the Unity Engine, the game features custom-scripted C# mechanics and dynamic asset pipelines.',
+    tags: ['C#', 'Unity3D', 'Game Dev'],
     link: '#',
     status: 'ARCHIVED',
   },
@@ -75,7 +75,7 @@ const ProjectsSection = () => {
           <div
             key={project.id}
             className={`project-card ${hoveredId === project.id ? 'hovered' : ''} ${horrorLevel >= 5 && i === 0 ? 'corrupted-card' : ''}`}
-            onMouseEnter={() => { setHoveredId(project.id); escalate('hover'); }}
+            onMouseEnter={() => { setHoveredId(project.id); }}
             onMouseLeave={() => setHoveredId(null)}
             onClick={() => escalate('project')}
           >

@@ -23,13 +23,13 @@
   pointer-events: none;
 }
 
-/* ─── Horror level filters ─── */
+/* ─── Horror level filters ─── 
 .horror-lvl-3 { filter: contrast(108%) saturate(85%); }
 .horror-lvl-4 { filter: contrast(115%) saturate(70%); }
 .horror-lvl-5 { filter: contrast(120%) saturate(55%) brightness(0.95); }
 .horror-lvl-6 { filter: contrast(130%) saturate(40%) brightness(0.92); }
 .horror-lvl-7 { filter: contrast(140%) saturate(25%) brightness(0.88) hue-rotate(5deg); }
-
+*/
 /* ─── Sidebar ─── */
 .p2-sidebar {
   position: relative;

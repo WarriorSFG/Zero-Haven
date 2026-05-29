@@ -4,7 +4,12 @@ import './Section.css';
 
 const AboutSection = () => {
   const { horrorLevel, escalate } = useHorror();
-
+  const Links = [
+    { label: 'GitHub', href: 'https://github.com/WarriorSFG' },
+    { label: 'LinkedIn', href: 'https://linkedin.com/in/samarthgupta9999' },
+    { label: 'Codeforces', href: 'https://codeforces.com/profile/WarriorSFG' },
+    { label: 'Dribbble', href: 'https://dribbble.com/samarthgupta' },
+  ];
   const corruptedBio = horrorLevel >= 6
     ? "SUBJECT CANNOT BE DESCRIBED. DATA CORRUPTED. IT KNOWS YOUR NAME."
     : null;
@@ -34,14 +39,14 @@ const AboutSection = () => {
             <p className="term-output">
               {corruptedBio || (
                 <>
-                  Hello. I'm <strong>[YOUR_NAME]</strong> — a <strong>[YOUR_ROLE]</strong> based in <strong>[YOUR_CITY]</strong>.
+                  Hello. I'm <strong>Samarth Gupta</strong> — a <strong>Software Developer</strong> based in <strong>Mumbai, India</strong>.
                 </>
               )}
             </p>
             <p className="term-output" style={{ marginTop: '1rem' }}>
               {horrorLevel < 4
-                ? '[INSERT PERSONAL BIO / DESCRIPTION HERE. Talk about your passion, background, and what drives you. 2–3 sentences works well here.]'
-                : '▓▒░ SIGNAL DEGRADED ░▒▓  [PARTIAL DATA RECOVERED]  [INSERT BIO FRAGMENT]'}
+                ? 'I am a B.Tech ECE student at IIT Guwahati specializing in full-stack web applications, AI integrations, and Web3 architectures. I actively engage in competitive programming with a strong foundation in C++ data structures and algorithms, constantly seeking to push the limits of performance and system design. Also an important thing you should know is...'
+                : '▓▒░ SIGNAL DEGRADED ░▒▓  [PARTIAL DATA RECOVERED]  I hate visitors...'}
             </p>
             {horrorLevel >= 2 && (
               <p className="term-output corrupted-line" style={{ marginTop: '0.5rem' }}>
@@ -58,9 +63,9 @@ const AboutSection = () => {
         {/* Stats / info cards */}
         <div className="about-stats">
           {[
-            { label: 'DESIGNATION', value: '[YOUR_ROLE]' },
-            { label: 'LOCATION',    value: '[YOUR_CITY]' },
-            { label: 'EXPERIENCE',  value: '[X] YEARS' },
+            { label: 'DESIGNATION', value: 'Software Engineer' },
+            { label: 'LOCATION',    value: 'Mumbai, India' },
+            { label: 'EXPERIENCE',  value: '2 YEARS' },
             { label: 'STATUS',      value: horrorLevel >= 5 ? 'COMPROMISED' : 'AVAILABLE' },
           ].map((stat, i) => (
             <div
@@ -77,14 +82,14 @@ const AboutSection = () => {
 
       {/* Links */}
       <div className="about-links">
-        {['GitHub', 'LinkedIn', 'Resume (PDF)', 'Dribbble'].map((link, i) => (
+        {Links.map((link, i) => (
           <a
             key={i}
-            href="#"
+            href={link.href}
             className="about-link"
             onClick={(e) => { e.preventDefault(); escalate('link'); }}
           >
-            <span className="link-arrow">→</span> {link}
+            <span className="link-arrow">→</span> {link.label}
           </a>
         ))}
       </div>

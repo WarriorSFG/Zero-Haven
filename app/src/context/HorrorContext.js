@@ -31,7 +31,7 @@ export const HorrorProvider = ({ children }) => {
   const flashScaryImage = useCallback(() => {
     const img = scaryImages[Math.floor(Math.random() * scaryImages.length)];
     setFlashImage(img);
-    setTimeout(() => setFlashImage(null), 80 + Math.random() * 120); // 80–200ms flash
+    setTimeout(() => setFlashImage(null), 120 + Math.random() * 200); // 80–200ms flash
   }, []);
 
   const playSFX = useCallback((src) => {
@@ -43,51 +43,6 @@ export const HorrorProvider = ({ children }) => {
     }
   }, []);
 
-  // Called on every significant user interaction
-  const escalate = useCallback(() => {
-    interactionCount.current += 1;
-    const count = interactionCount.current;
-
-    const newLevel = Math.min(10, Math.floor(count / 2));
-    setHorrorLevel(newLevel);
-
-    // Phase transitions
-    if (count >= 3 && phase === 1) setPhase(2);
-    if (count >= 12 && phase === 2) setPhase(3);  // triggers jumpscare
-
-    // Escalation events based on interaction count
-    if (count === 3) {
-      triggerGlitch(200);
-      playSFX('/assets/wet-crawl.mp3');
-    }
-    if (count === 5) {
-      flashScaryImage();
-    }
-    if (count === 7) {
-      triggerGlitch(500);
-      playSFX('/assets/wet-crawl.mp3');
-      document.body.style.filter = 'contrast(130%) saturate(60%)';
-    }
-    if (count === 9) {
-      flashScaryImage();
-      setCorruptedCursor(true);
-    }
-    if (count === 11) {
-      triggerGlitch(800);
-      setScaryTextVisible(true);
-      setTimeout(() => setScaryTextVisible(false), 2000);
-    }
-    if (count >= 12) {
-      executeJumpscare();
-    }
-
-    // Random chance events above level 4
-    if (newLevel >= 4) {
-      if (Math.random() < 0.15) flashScaryImage();
-      if (Math.random() < 0.10) triggerGlitch(150);
-    }
-  }, [phase, triggerGlitch, flashScaryImage, playSFX]);
-
   const executeJumpscare = useCallback(() => {
     if (isJumpscare) return;
     setIsJumpscare(true);
@@ -97,6 +52,53 @@ export const HorrorProvider = ({ children }) => {
       scareAudioRef.current.play().catch(() => {});
     }
   }, [isJumpscare]);
+
+  // Called on every significant user interaction
+  const escalate = useCallback(() => {
+    interactionCount.current += 1;
+    const count = interactionCount.current;
+
+    playSFX('/assets/ui-click.mp3');
+
+    const newLevel = Math.min(10, Math.floor(count / 5));
+    setHorrorLevel(newLevel);
+
+    // Phase transitions
+    if (count >= 1 && phase === 1) setPhase(2);
+    
+    // Trigger the final jumpscare (which handles setting phase to 3 internally)
+    if (count >= 30) {
+      executeJumpscare();
+    }
+
+    // Escalation events spaced out to fit the new 30-interaction timeline
+    if (count === 5) {
+      triggerGlitch(200);
+      playSFX('/assets/wet-crawl.mp3');
+    }
+    if (count === 10) {
+      flashScaryImage();
+    }
+    if (count === 15) {
+      triggerGlitch(500);
+      playSFX('/assets/wet-crawl.mp3');
+    }
+    if (count === 20) {
+      flashScaryImage();
+      setCorruptedCursor(true);
+    }
+    if (count === 25) {
+      triggerGlitch(800);
+      setScaryTextVisible(true);
+      setTimeout(() => setScaryTextVisible(false), 2000);
+    }
+
+    // Random chance events above level 4
+    if (newLevel >= 4) {
+      if (Math.random() < 0.15) flashScaryImage();
+      if (Math.random() < 0.10) triggerGlitch(150);
+    }
+  }, [phase, triggerGlitch, flashScaryImage, playSFX, executeJumpscare]);
 
   const startAmbientAudio = useCallback(() => {
     if (bgAudioRef.current && bgAudioRef.current.paused) {

@@ -22,7 +22,7 @@ const ContactSection = () => {
   const [submitting, setSubmitting] = useState(false);
   const [placeholderName, setPlaceholderName]       = useState('YOUR_NAME');
   const [placeholderEmail, setPlaceholderEmail]     = useState('YOUR_EMAIL');
-  const [placeholderMessage, setPlaceholderMessage] = useState('[INSERT YOUR MESSAGE HERE]');
+  const [placeholderMessage, setPlaceholderMessage] = useState('INSERT YOUR MESSAGE HERE');
 
   // Corrupt placeholders at high horror level
   useEffect(() => {
@@ -125,14 +125,14 @@ const ContactSection = () => {
         <div className="contact-info">
           <div className="contact-info-block">
             <div className="info-label">DIRECT_SIGNAL</div>
-            <a href="mailto:[YOUR_EMAIL]" className="info-value" onClick={() => escalate('email')}>
-              [YOUR_EMAIL@DOMAIN.COM]
+            <a href="mailto:samarthgupta9999@gmail.com" className="info-value" onClick={() => escalate('email')}>
+              [samarthgupta9999@gmail.com]
             </a>
           </div>
           <div className="contact-info-block">
             <div className="info-label">LOCATION_DATA</div>
             <div className="info-value">
-              {horrorLevel >= 5 ? 'LOCATION_COMPROMISED' : '[YOUR_CITY, COUNTRY]'}
+              {horrorLevel >= 5 ? 'LOCATION_COMPROMISED' : 'MUMBAI, INDIA'}
             </div>
           </div>
           <div className="contact-info-block">

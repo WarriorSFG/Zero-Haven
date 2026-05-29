@@ -8,10 +8,10 @@ const SKILL_CATEGORIES = [
     label: 'FRONTEND',
     icon: '◈',
     skills: [
-      { name: '[SKILL NAME]', level: 90 },
-      { name: '[SKILL NAME]', level: 85 },
-      { name: '[SKILL NAME]', level: 75 },
-      { name: '[SKILL NAME]', level: 70 },
+      { name: 'React.js / Next.js', level: 90 },
+      { name: 'JavaScript', level: 85 },
+      { name: 'React Native', level: 75 },
+      { name: 'UI/UX Architecture', level: 70 },
     ],
   },
   {
@@ -19,10 +19,10 @@ const SKILL_CATEGORIES = [
     label: 'BACKEND',
     icon: '◉',
     skills: [
-      { name: '[SKILL NAME]', level: 80 },
-      { name: '[SKILL NAME]', level: 75 },
-      { name: '[SKILL NAME]', level: 65 },
-      { name: '[SKILL NAME]', level: 60 },
+      { name: 'Node.js / Express.js', level: 85 },
+      { name: 'MongoDB', level: 80 },
+      { name: 'SQL', level: 75 },
+      { name: 'System Design', level: 70 },
     ],
   },
   {
@@ -30,10 +30,10 @@ const SKILL_CATEGORIES = [
     label: 'TOOLS / OTHER',
     icon: '◐',
     skills: [
-      { name: '[SKILL NAME]', level: 90 },
-      { name: '[SKILL NAME]', level: 85 },
-      { name: '[SKILL NAME]', level: 70 },
-      { name: '[SKILL NAME]', level: 65 },
+      { name: 'C / C++', level: 90 },
+      { name: 'Python', level: 85 },
+      { name: 'Microsoft Azure', level: 75 },
+      { name: 'C# / Unity3D', level: 70 },
     ],
   },
 ];
@@ -123,9 +123,13 @@ const SkillsSection = () => {
         <div className="extras-header">OTHER NOTES</div>
         <div className="extras-list">
           {[
-            '[INSERT CERTIFICATION / ACHIEVEMENT HERE]',
-            '[INSERT CERTIFICATION / ACHIEVEMENT HERE]',
-            '[INSERT AWARD OR RECOGNITION HERE]',
+            'All India Rank 2126, JEE Advanced',
+            '99.6%ile JEE Mains',
+            '99.96%ile MHCET',
+            'Codeforces Specialist (Max Rating: 1415)',
+            'Atlassian Fasttrack Finalist (Top 27 Candidates)',
+            'Top 250 Finalist, Microsoft AI Unlocked 2026',
+            'Stage 2 Candidate, AlgoUniversity Tech Fellowship (Top 8%)',
           ].map((item, i) => (
             <div
               key={i}
