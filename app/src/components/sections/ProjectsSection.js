@@ -35,6 +35,30 @@ const PROJECTS = [
     link: '#',
     status: 'ARCHIVED',
   },
+  {
+    id: 5,
+    title: 'CONVOLVE 4.0 // DOCUMENT AI',
+    description: 'Engineered a hybrid vision-language pipeline using YOLO and Qwen3-VL to accurately extract structured fields from multilingual invoice PDFs. The system bypasses no-ground-truth constraints, achieving 99.3% mAP@50 while keeping inference costs under a cent per document.',
+    tags: ['Computer Vision', 'OCR', 'YOLO'],
+    link: '#',
+    status: 'ARCHIVED',
+  },
+  {
+    id: 6,
+    title: 'REDRESERVE PLATFORM',
+    description: 'Built a centralized blood donation network that connects eligible donors with hospitals through a real-time interactive map and precise pincode-based matching. The system features secure dual portals for tracking live blood inventory, scheduling, and broadcasting urgent requests.',
+    tags: ['React.js', 'Node.js', 'MongoDB'],
+    link: '#',
+    status: 'ARCHIVED',
+  },
+  {
+    id: 7,
+    title: 'CUSTOM COGNITIVE LLM',
+    description: 'Fine-tuned a 7B parameter LLM on over one million curated samples to handle varied intents, ranging from context-aware casual conversation to complex mathematical reasoning. The architecture utilizes a custom wrapper that dynamically adjusts prompts and securely executes generated Python code blocks.',
+    tags: ['AI/ML', 'LLM', 'Python'],
+    link: '#',
+    status: 'DEPLOYED',
+  }
 ];
 
 // Corrupted project titles shown at high horror levels

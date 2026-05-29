@@ -5,12 +5,14 @@ import AboutSection from './sections/AboutSection';
 import ProjectsSection from './sections/ProjectsSection';
 import SkillsSection from './sections/SkillsSection';
 import ContactSection from './sections/ContactSection';
+import ExperienceSection from './sections/ExperienceSection';
 import './PhaseTwo.css';
 
 const NAV_ITEMS = [
   { id: 'about',    label: 'SYS_DATA',     sub: 'About' },
   { id: 'projects', label: 'ARCHIVES',     sub: 'Projects' },
   { id: 'skills',   label: 'CAPABILITIES', sub: 'Skills' },
+  { id: 'experience', label: 'HISTORY',   sub: 'Experience' },
   { id: 'contact',  label: 'OPEN_CHANNEL', sub: 'Contact' },
 ];
 
@@ -19,6 +21,7 @@ const CORRUPTED_LABELS = {
   about:    'WHO_ARE_YOU',
   projects: 'YOUR_WORK_IS_MINE',
   skills:   'USELESS',
+  experience: 'YOUR_MEMORY_IS_MINE',
   contact:  '▓▓▓▓▓▓▓▓',
 };
 
@@ -124,6 +127,7 @@ const PhaseTwo = () => {
           {activeSection === 'projects' && <ProjectsSection />}
           {activeSection === 'skills'   && <SkillsSection />}
           {activeSection === 'contact'  && <ContactSection />}
+          {activeSection === 'experience' && <ExperienceSection />}
         </div>
       </main>
 

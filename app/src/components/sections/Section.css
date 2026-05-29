@@ -525,3 +525,170 @@ a.info-value:hover { color: #ccc; }
   0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
   20%, 24%, 55% { opacity: 0.15; transform: skewX(2deg); }
 }
+
+/* ══════════════════════════════
+   EXPERIENCE SECTION
+══════════════════════════════ */
+.experience-warning {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: #bbb;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.6rem 1rem;
+  margin-bottom: 2rem;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(0,0,0,0.2),
+    rgba(0,0,0,0.2) 10px,
+    rgba(255,255,255,0.02) 10px,
+    rgba(255,255,255,0.02) 20px
+  );
+  text-align: center;
+}
+
+.experience-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.exp-item {
+  display: flex;
+  gap: 1.5rem;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.exp-item:hover,
+.exp-item.hovered {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+.exp-timeline-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 12px;
+  margin-top: 0.4rem;
+}
+
+.exp-dot {
+  width: 10px;
+  height: 10px;
+  background: var(--blood-bright);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(139,0,0,0.8);
+  transition: transform 0.3s, background 0.3s;
+}
+
+.exp-item:hover .exp-dot {
+  transform: scale(1.4);
+  background: #ff6666;
+}
+
+.exp-line {
+  width: 1px;
+  flex-grow: 1;
+  background: linear-gradient(to bottom, var(--blood), transparent 80%);
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.exp-content {
+  flex-grow: 1;
+  padding-bottom: 2.5rem;
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.exp-role {
+  font-family: var(--font-horror);
+  font-size: 1.4rem;
+  color: #e0e0e0;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  margin-bottom: 0.2rem;
+}
+
+.exp-company-loc {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+.exp-company {
+  color: var(--terminal-green);
+}
+
+.exp-separator {
+  color: #555;
+}
+
+.exp-location {
+  color: #888;
+}
+
+.exp-duration {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: #666;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid rgba(255,255,255,0.05);
+  background: rgba(0,0,0,0.3);
+}
+
+.exp-points {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.exp-point-item {
+  display: flex;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: #aaa;
+  transition: color 0.2s;
+}
+
+.exp-item:hover .exp-point-item {
+  color: #ccc;
+}
+
+.exp-point-bullet {
+  color: var(--blood-bright);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.danger-text {
+  color: var(--blood-bright) !important;
+  border-color: var(--blood) !important;
+}
+
+.redacted-text {
+  background: #111;
+  color: #444;
+  padding: 0 0.2rem;
+  letter-spacing: 0.1em;
+}
+
+.corrupted-exp .exp-dot {
+  background: #444 !important;
+  box-shadow: none !important;
+  animation: cursorBlink 2s step-end infinite;
+}
