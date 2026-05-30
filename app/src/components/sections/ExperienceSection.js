@@ -68,7 +68,7 @@ const ExperienceSection = () => {
   return (
     <section className="section experience-section">
       <div className="section-header">
-        <span className="section-tag">// ACTIVITY_LOG</span>
+        <span className="section-tag">{"// ACTIVITY_LOG"}</span>
         <h2 className="section-title">
           {horrorLevel >= 6 ? 'FALSE_MEMORIES' : 'EXPERIENCE'}
         </h2>
@@ -103,7 +103,7 @@ const ExperienceSection = () => {
                   </h3>
                   <div className="exp-company-loc">
                     <span className="exp-company">{getCompany(exp, i)}</span>
-                    <span className="exp-separator"> // </span>
+                    <span className="exp-separator">{" // "}</span>
                     <span className="exp-location">{horrorLevel >= 6 ? 'UNKNOWN_ORIGIN' : exp.location}</span>
                   </div>
                 </div>

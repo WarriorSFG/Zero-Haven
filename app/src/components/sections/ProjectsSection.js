@@ -87,7 +87,7 @@ const ProjectsSection = () => {
   return (
     <section className="section projects-section">
       <div className="section-header">
-        <span className="section-tag">// ARCHIVES</span>
+        <span className="section-tag">{"// ARCHIVES"}</span>
         <h2 className="section-title">
           {horrorLevel >= 6 ? 'EVIDENCE' : 'PROJECTS'}
         </h2>

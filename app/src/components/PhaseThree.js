@@ -136,12 +136,12 @@ const PhaseThree = () => {
           {showContact && (
             <div className="p3-cta">
               <div className="p3-cta-inner">
-                <div className="p3-cta-eyebrow">// END_TRANSMISSION</div>
+                <div className="p3-cta-eyebrow">{`// END_TRANSMISSION`}</div>
                 <div className="p3-cta-name">Samarth Gupta</div>
                 <div className="p3-cta-role">Software Engineer — AVAILABLE FOR HIRE</div>
                 <div className="p3-cta-links">
                   <a href="mailto:samarthgupta9999@gmail.com" className="p3-cta-btn primary">
-                    ▶ OPEN CHANNEL // Email
+                    {`▶ OPEN CHANNEL // Email`}
                   </a>
                   <a href="https://github.com/WarriorSFG" className="p3-cta-btn" target="_blank" rel="noreferrer">
                     ▶ GitHub

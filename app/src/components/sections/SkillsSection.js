@@ -83,7 +83,7 @@ const SkillsSection = () => {
   return (
     <section className="section skills-section">
       <div className="section-header">
-        <span className="section-tag">// CAPABILITIES</span>
+        <span className="section-tag">{"// CAPABILITIES"}</span>
         <h2 className="section-title">
           {horrorLevel >= 6 ? 'WHAT_REMAINS' : 'SKILLS'}
         </h2>

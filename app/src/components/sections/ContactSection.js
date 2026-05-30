@@ -2,18 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useHorror } from '../../context/HorrorContext';
 import './Section.css';
 
-// As the user types, corrupt their input slightly at high horror levels
-const corruptText = (text, horrorLevel) => {
-  if (horrorLevel < 5) return text;
-  const corruption = '▓▒░█▄▀■□▪▫';
-  return text.split('').map((char, i) => {
-    if (Math.random() < (horrorLevel - 4) * 0.04 && char !== ' ') {
-      return corruption[Math.floor(Math.random() * corruption.length)];
-    }
-    return char;
-  }).join('');
-};
-
 const ContactSection = () => {
   const { horrorLevel, escalate, executeJumpscare } = useHorror();
   const [name, setName]       = useState('');
@@ -53,7 +41,7 @@ const ContactSection = () => {
   return (
     <section className="section contact-section">
       <div className="section-header">
-        <span className="section-tag">// OPEN_CHANNEL</span>
+        <span className="section-tag">{"// OPEN_CHANNEL"}</span>
         <h2 className="section-title">
           {horrorLevel >= 5 ? 'NO_ESCAPE' : 'CONTACT'}
         </h2>
@@ -144,13 +132,13 @@ const ContactSection = () => {
 
           {horrorLevel >= 4 && (
             <div className="contact-lore">
-              <div className="lore-line">// LOG_ENTRY_4719</div>
-              <div className="lore-line">// SUBJECT ACCESSED CONTACT FORM</div>
-              <div className="lore-line">// COORDINATES REGISTERED</div>
+              <div className="lore-line">{"// LOG_ENTRY_4719"}</div>
+              <div className="lore-line">{"// SUBJECT ACCESSED CONTACT FORM"}</div>
+              <div className="lore-line">{"// COORDINATES REGISTERED"}</div>
               {horrorLevel >= 6 && (
                 <>
-                  <div className="lore-line lore-danger">// IT HAS YOUR ADDRESS</div>
-                  <div className="lore-line lore-danger">// TURN BACK</div>
+                  <div className="lore-line lore-danger">{"// IT HAS YOUR ADDRESS"}</div>
+                  <div className="lore-line lore-danger">{"// TURN BACK"}</div>
                 </>
               )}
             </div>

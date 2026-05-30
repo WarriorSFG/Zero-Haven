@@ -86,7 +86,7 @@ const PhaseTwo = () => {
                 {activeSection === item.id ? '▶' : '○'}
               </span>
               <span className="nav-label">{getLabel(item)}</span>
-              <span className="nav-sub">// {item.sub}</span>
+              <span className="nav-sub">{`// ${item.sub}`}</span>
             </button>
           ))}
         </nav>
@@ -116,7 +116,7 @@ const PhaseTwo = () => {
         <div className="p2-topbar">
           <span className="topbar-path">
             ~/portfolio/{activeSection}
-            {horrorLevel >= 5 && <span className="topbar-warning"> // IT IS WATCHING</span>}
+            {horrorLevel >= 5 && <span className="topbar-warning">{" // IT IS WATCHING"}</span>}
           </span>
           <span className="topbar-clock">{new Date().toLocaleTimeString('en-GB', { hour12: false })}</span>
         </div>

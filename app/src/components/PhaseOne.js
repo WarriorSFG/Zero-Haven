@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHorror } from '../context/HorrorContext';
 import CRTOverlay from './CRTOverlay';
 import './PhaseOne.css';

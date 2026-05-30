@@ -17,7 +17,7 @@ const AboutSection = () => {
   return (
     <section className="section about-section">
       <div className="section-header">
-        <span className="section-tag">// SYS_DATA</span>
+        <span className="section-tag">{"// SYS_DATA"}</span>
         <h2 className="section-title">
           {horrorLevel >= 5 ? 'WHO_AM_I_NOW' : 'ABOUT'}
         </h2>
@@ -50,7 +50,7 @@ const AboutSection = () => {
             </p>
             {horrorLevel >= 2 && (
               <p className="term-output corrupted-line" style={{ marginTop: '0.5rem' }}>
-                // ANOMALY NOTE: subject is aware they are being observed
+                {"// ANOMALY NOTE: subject is aware they are being observed"}
               </p>
             )}
             <p className="term-line blink-cursor">
