@@ -1,0 +1,96 @@
+/* ─── Anomaly Toast ─── */
+.anomaly-toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 9000;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  background: rgba(5, 5, 5, 0.97);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 0 40px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(255,255,255,0.03);
+  width: 320px;
+  font-family: var(--font-mono);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.toast-visible {
+  transform: translateY(0) translateX(0);
+  opacity: 1;
+}
+
+.toast-hidden {
+  transform: translateY(12px) translateX(20px);
+  opacity: 0;
+}
+
+.toast-left-bar {
+  width: 3px;
+  flex-shrink: 0;
+  background: #8b0000;
+  box-shadow: 0 0 12px currentColor;
+}
+
+.toast-body {
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+.toast-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toast-tag {
+  font-size: 0.55rem;
+  letter-spacing: 0.3em;
+  font-weight: 600;
+}
+
+.toast-diff {
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  opacity: 0.8;
+}
+
+.toast-label {
+  font-size: 0.78rem;
+  color: #d0d0d0;
+  letter-spacing: 0.03em;
+  line-height: 1.4;
+}
+
+.toast-count {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  color: #444;
+  margin-top: 0.2rem;
+}
+
+.toast-bar {
+  flex: 1;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.06);
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.toast-bar-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}

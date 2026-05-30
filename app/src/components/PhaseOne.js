@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHorror } from '../context/HorrorContext';
 import CRTOverlay from './CRTOverlay';
+import HowToPlay from './howtoplay';
 import './PhaseOne.css';
 
 const PhaseOne = () => {
   const { horrorLevel, glitchActive, escalate } = useHorror();
+  // State to control the visibility of the briefing overlay
+  // Initialized to true so it shows up on first load
+  const [showBriefing, setShowBriefing] = useState(true);
 
   const navItems = [
     { label: '> SYS_DATA      // About',       id: 'about' },
@@ -41,6 +45,16 @@ const PhaseOne = () => {
         </p>
 
         <nav className="p1-nav" aria-label="Portfolio navigation">
+          {/* Button to re-trigger the briefing manually */}
+          <button 
+            className="p1-btn" 
+            onClick={() => setShowBriefing(true)}
+          >
+            <span className="btn-bracket">[</span>
+            <span className="btn-text">{'> BRIEFING        // How to play'}</span>
+            <span className="btn-bracket">]</span>
+          </button>
+
           {navItems.map((item) => (
             <button
               key={item.id}
@@ -56,12 +70,17 @@ const PhaseOne = () => {
 
         <div className="p1-footer">
           {horrorLevel === 0
-            ? 'SELECT A NODE TO BEGIN'
+            ? 'ALL OPTIONS ARE THE SAME // PROCEED WITH CAUTION'
             : `WARNING LEVEL: ${horrorLevel.toString().padStart(2,'0')} // CONTAINMENT FAILING`}
         </div>
       </main>
 
       <CRTOverlay intensity={1 + horrorLevel * 0.1} />
+
+      {/* Render the How To Play overlay when active */}
+      {showBriefing && (
+        <HowToPlay onDismiss={() => setShowBriefing(false)} />
+      )}
     </div>
   );
 };

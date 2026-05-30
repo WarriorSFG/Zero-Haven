@@ -1,0 +1,115 @@
+/* ─── Anomaly Score Panel (add to PhaseThree.css) ─── */
+
+.p3-score-panel {
+  width: 100%;
+  max-width: 640px;
+  border: 1px solid rgba(139,0,0,0.2);
+  background: rgba(0,0,0,0.6);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: brokenFadeIn 0.6s ease-out both;
+}
+
+.p3-score-eyebrow {
+  font-size: 0.55rem;
+  letter-spacing: 0.35em;
+  color: var(--blood-bright);
+  font-family: var(--font-mono);
+}
+
+.p3-score-main {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.p3-score-fraction {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  font-family: var(--font-mono);
+  flex-shrink: 0;
+}
+
+.p3-score-num {
+  font-size: 2.5rem;
+  line-height: 1;
+  font-family: var(--font-horror);
+}
+
+.p3-score-sep {
+  font-size: 1rem;
+  color: #333;
+}
+
+.p3-score-total {
+  font-size: 1rem;
+  color: #555;
+}
+
+.p3-score-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.p3-score-tier {
+  font-family: var(--font-horror);
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+}
+
+.p3-score-desc {
+  font-size: 0.7rem;
+  color: #555;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+}
+
+/* Breakdown grid */
+.p3-score-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  padding-top: 0.75rem;
+}
+
+.p3-score-row {
+  display: grid;
+  grid-template-columns: 20px 1fr 60px;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.03em;
+  animation: lineAppear 0.2s ease-out both;
+}
+
+.p3-score-check {
+  font-size: 0.65rem;
+  text-align: center;
+}
+
+.p3-score-item-label {
+  line-height: 1.4;
+  transition: color 0.3s;
+}
+
+.p3-score-diff {
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.score-row-found .p3-score-item-label {
+  text-decoration: line-through;
+  text-decoration-color: rgba(255,255,255,0.15);
+}
+
+.score-row-missed .p3-score-item-label {
+  font-style: italic;
+}

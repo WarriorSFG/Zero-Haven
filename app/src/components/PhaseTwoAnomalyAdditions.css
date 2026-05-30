@@ -1,0 +1,54 @@
+/* ─── Anomaly Score Badge (add to PhaseTwo.css) ─── */
+
+.p2-anomaly-score {
+  border: 1px solid #1a1a1a;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  transition: border-color 0.5s ease;
+}
+
+.anomaly-score-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.anomaly-score-tag {
+  font-size: 0.5rem;
+  letter-spacing: 0.25em;
+  color: #2a2a2a;
+  transition: color 0.5s ease;
+}
+
+.anomaly-score-val {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: #2a2a2a;
+  transition: color 0.5s ease;
+  font-family: var(--font-mono);
+}
+
+.anomaly-score-bar {
+  height: 2px;
+  background: rgba(255,255,255,0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.anomaly-score-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1), background 0.5s ease;
+}
+
+.anomaly-score-label {
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  color: #1a1a1a;
+  text-align: right;
+  transition: color 0.5s ease;
+}

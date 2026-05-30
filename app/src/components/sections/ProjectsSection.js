@@ -34,6 +34,8 @@ const PROJECTS = [
     tags: ['C#', 'Unity3D', 'Game Dev'],
     link: '#',
     status: 'ARCHIVED',
+    // ── ANOMALY: This project is #4 but will render as #000 ──
+    anomalyId: true,
   },
   {
     id: 5,
@@ -47,9 +49,11 @@ const PROJECTS = [
     id: 6,
     title: 'REDRESERVE PLATFORM',
     description: 'Built a centralized blood donation network that connects eligible donors with hospitals through a real-time interactive map and precise pincode-based matching. The system features secure dual portals for tracking live blood inventory, scheduling, and broadcasting urgent requests.',
-    tags: ['React.js', 'Node.js', 'MongoDB'],
+    // ── ANOMALY: One tag reads "HELP_ME" ──
+    tags: ['React.js', 'Node.js', 'HELP_ME', 'MongoDB'],
     link: '#',
     status: 'ARCHIVED',
+    anomalyTag: true,
   },
   {
     id: 7,
@@ -70,7 +74,7 @@ const CORRUPTED_TITLES = [
 ];
 
 const ProjectsSection = () => {
-  const { horrorLevel, escalate } = useHorror();
+  const { horrorLevel, escalate, discoverAnomaly, foundAnomalies } = useHorror();
   const [hoveredId, setHoveredId] = useState(null);
 
   const getTitle = (project, i) => {
@@ -82,6 +86,12 @@ const ProjectsSection = () => {
   const getStatus = (status) => {
     if (horrorLevel >= 6) return 'CORRUPTED';
     return status;
+  };
+
+  // ── ANOMALY 1: Project #4 shows #000 ──
+  const getProjectId = (project) => {
+    if (project.anomalyId) return '000';  // Wrong ID for project 4
+    return project.id.toString().padStart(3, '0');
   };
 
   return (
@@ -98,8 +108,11 @@ const ProjectsSection = () => {
         {PROJECTS.map((project, i) => (
           <div
             key={project.id}
-            className={`project-card ${hoveredId === project.id ? 'hovered' : ''} ${horrorLevel >= 5 && i === 0 ? 'corrupted-card' : ''}`}
-            onMouseEnter={() => { setHoveredId(project.id); }}
+            className={`project-card
+              ${hoveredId === project.id ? 'hovered' : ''}
+              ${horrorLevel >= 5 && i === 0 ? 'corrupted-card' : ''}
+            `}
+            onMouseEnter={() => setHoveredId(project.id)}
             onMouseLeave={() => setHoveredId(null)}
             onClick={() => escalate('project')}
           >
@@ -109,14 +122,30 @@ const ProjectsSection = () => {
                 <span className={`project-status status-${getStatus(project.status).toLowerCase()}`}>
                   ● {getStatus(project.status)}
                 </span>
-                <span className="project-id">
-                  #{project.id.toString().padStart(3, '0')}
+                {/* ── ANOMALY 1: Project #4 shows #000 — clicking the ID badge finds it ── */}
+                <span
+                  className={`project-id
+                    ${project.anomalyId && !foundAnomalies.has('projects_wrong_id') ? 'anomaly-id-pulse' : ''}
+                    ${project.anomalyId && foundAnomalies.has('projects_wrong_id') ? 'anomaly-found-text' : ''}
+                  `}
+                  onClick={project.anomalyId ? (e) => {
+                    e.stopPropagation();
+                    discoverAnomaly('projects_wrong_id');
+                  } : undefined}
+                  title={project.anomalyId && !foundAnomalies.has('projects_wrong_id')
+                    ? 'Wait... this number doesn\'t look right'
+                    : undefined}
+                  style={project.anomalyId ? { cursor: 'pointer' } : {}}
+                >
+                  #{getProjectId(project)}
                 </span>
               </div>
 
               {/* Title */}
-              <h3 className={`project-title ${horrorLevel >= 5 && i === 0 ? 'glitch-text-sm' : ''}`}
-                data-text={getTitle(project, i)}>
+              <h3
+                className={`project-title ${horrorLevel >= 5 && i === 0 ? 'glitch-text-sm' : ''}`}
+                data-text={getTitle(project, i)}
+              >
                 {getTitle(project, i)}
               </h3>
 
@@ -129,9 +158,28 @@ const ProjectsSection = () => {
 
               {/* Tags */}
               <div className="project-tags">
-                {project.tags.map((tag, j) => (
-                  <span key={j} className="project-tag">{tag}</span>
-                ))}
+                {project.tags.map((tag, j) => {
+                  const isAnomalyTag = project.anomalyTag && tag === 'HELP_ME';
+                  return (
+                    <span
+                      key={j}
+                      className={`project-tag
+                        ${isAnomalyTag ? 'anomaly-tag' : ''}
+                        ${isAnomalyTag && foundAnomalies.has('projects_phantom_tag') ? 'anomaly-tag-found' : ''}
+                      `}
+                      onClick={isAnomalyTag ? (e) => {
+                        e.stopPropagation();
+                        discoverAnomaly('projects_phantom_tag');
+                      } : undefined}
+                      title={isAnomalyTag && !foundAnomalies.has('projects_phantom_tag')
+                        ? 'This tag... should not be here'
+                        : undefined}
+                      style={isAnomalyTag ? { cursor: 'pointer' } : {}}
+                    >
+                      {tag}
+                    </span>
+                  );
+                })}
               </div>
 
               {/* Link */}

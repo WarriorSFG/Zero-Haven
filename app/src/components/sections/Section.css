@@ -692,3 +692,206 @@ a.info-value:hover { color: #ccc; }
   box-shadow: none !important;
   animation: cursorBlink 2s step-end infinite;
 }
+
+/* ══════════════════════════════
+   ANOMALY SYSTEM — Shared Styles
+   Append to Section.css
+══════════════════════════════ */
+
+/* ── Generic anomaly hints ── */
+
+/* A subtle pulse on undiscovered anomalies */
+@keyframes anomalyPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+@keyframes anomalyGlow {
+  0%, 100% { box-shadow: 0 0 4px rgba(139,0,0,0.2); }
+  50%       { box-shadow: 0 0 10px rgba(139,0,0,0.5); }
+}
+
+/* Found state — subtle green confirmation */
+.anomaly-found-text {
+  color: #00aa44 !important;
+  text-shadow: 0 0 6px rgba(0,170,68,0.4);
+}
+
+/* ── ABOUT: Fourth terminal dot ── */
+.anomaly-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  /* Nearly invisible at start */
+}
+
+/* ── ABOUT: Experience "2 YEARS" stat card ── */
+.anomaly-card-hint {
+  border-color: rgba(60, 0, 0, 0.4) !important;
+  animation: anomalyGlow 3s ease-in-out infinite;
+}
+.anomaly-card-hint:hover {
+  border-color: rgba(139, 0, 0, 0.7) !important;
+  cursor: pointer;
+}
+.anomaly-card-found {
+  border-color: rgba(0, 170, 68, 0.3) !important;
+  box-shadow: 0 0 8px rgba(0, 170, 68, 0.15) !important;
+}
+
+/* ── PROJECTS: Wrong ID badge ── */
+.anomaly-id-pulse {
+  color: #330000 !important;
+  animation: anomalyPulse 2s ease-in-out infinite;
+  cursor: pointer !important;
+}
+.anomaly-id-pulse:hover {
+  color: var(--blood-bright) !important;
+}
+
+/* ── PROJECTS: HELP_ME tag ── */
+.anomaly-tag {
+  border-color: rgba(139, 0, 0, 0.5) !important;
+  color: #8b0000 !important;
+  background: rgba(139, 0, 0, 0.06) !important;
+  animation: anomalyPulse 1.5s ease-in-out infinite;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+}
+.anomaly-tag:hover {
+  color: var(--blood-bright) !important;
+  border-color: var(--blood-bright) !important;
+  background: rgba(139, 0, 0, 0.15) !important;
+}
+.anomaly-tag-found {
+  border-color: rgba(0, 170, 68, 0.4) !important;
+  color: #00aa44 !important;
+  background: rgba(0, 170, 68, 0.05) !important;
+  animation: none;
+}
+
+/* ── SKILLS: 101% bar ── */
+.anomaly-bar-hint {
+  cursor: pointer;
+}
+.anomaly-bar-hint:hover .skill-name {
+  color: var(--blood-bright) !important;
+}
+.anomaly-pct {
+  color: #8b0000 !important;
+  animation: anomalyPulse 1.8s ease-in-out infinite;
+  font-weight: bold;
+}
+.anomaly-bar-found .anomaly-pct {
+  color: #00aa44 !important;
+  animation: none;
+}
+.fill-anomaly {
+  background: linear-gradient(to right, #3a0000, var(--blood-bright)) !important;
+  animation: anomalyGlow 1s ease-in-out infinite alternate;
+}
+.skill-bar-overflow {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--blood-bright);
+  box-shadow: 0 0 6px var(--blood-bright);
+  animation: anomalyPulse 0.5s ease-in-out infinite;
+}
+.skill-bar-track { position: relative; overflow: visible !important; }
+
+/* ── SKILLS: Ghost category ── */
+.skills-grid-ghost {
+  grid-template-columns: repeat(3, 1fr) !important;
+  /* Ghost col sits in a 4th implicit column */
+}
+.ghost-category {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  cursor: pointer;
+  grid-column: 4;
+  /* Only appears when ghost-visible is set */
+}
+.ghost-hidden {
+  opacity: 0;
+  transform: translateX(8px);
+  pointer-events: none;
+}
+.ghost-visible {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: all;
+  animation: anomalyPulse 2s ease-in-out infinite;
+}
+.ghost-found {
+  opacity: 0.3 !important;
+  animation: none !important;
+}
+
+/* ── EXPERIENCE: Overlap hint on duration ── */
+.overlap-hint {
+  cursor: pointer !important;
+  color: #550000 !important;
+  border-color: rgba(85, 0, 0, 0.5) !important;
+  animation: anomalyPulse 2.5s ease-in-out infinite;
+}
+.overlap-hint:hover {
+  color: var(--blood-bright) !important;
+  border-color: var(--blood-bright) !important;
+}
+
+/* ── EXPERIENCE: Phantom entry ── */
+.phantom-entry {
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  cursor: pointer;
+}
+.phantom-visible {
+  opacity: 0.7 !important;
+  transform: translateX(0) !important;
+}
+.phantom-text {
+  color: #2a0000 !important;
+  text-shadow: 0 0 8px rgba(139,0,0,0.3);
+}
+.phantom-dot {
+  background: #2a0000 !important;
+  box-shadow: 0 0 4px rgba(139,0,0,0.3) !important;
+  animation: anomalyPulse 1.5s ease-in-out infinite !important;
+}
+.phantom-line {
+  background: linear-gradient(to bottom, #2a0000, transparent 80%) !important;
+}
+.phantom-bullet {
+  color: #440000 !important;
+}
+.phantom-entry:hover {
+  opacity: 1 !important;
+}
+
+/* ── CONTACT: Email anomaly ── */
+.anomaly-email-hint {
+  font-family: var(--font-mono);
+  letter-spacing: 0.03em;
+}
+.anomaly-email-hint:hover {
+  color: #ffaaaa !important;
+  text-decoration: underline;
+  text-decoration-color: rgba(139,0,0,0.5);
+}
+
+/* ── CONTACT: Hidden lore block ── */
+.contact-lore-anomaly {
+  border-left: 2px solid #1a0000;
+  transition: border-left-color 0.5s ease;
+  cursor: pointer;
+  min-height: 60px;
+}
+.anomaly-lore-hint:hover {
+  border-left-color: rgba(139, 0, 0, 0.4) !important;
+}
+.anomaly-lore-found {
+  border-left-color: rgba(0, 170, 68, 0.4) !important;
+}

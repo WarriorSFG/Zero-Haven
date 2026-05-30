@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { useHorror, ANOMALY_REGISTRY } from '../context/HorrorContext';
 import './PhaseThree.css';
 
 const GLITCH_MESSAGES = [
@@ -12,22 +13,43 @@ const GLITCH_MESSAGES = [
   '▓▓▓▓▓▓▓▓▓▓▓▓',
 ];
 
+const SCORE_TIERS = [
+  { min: 10, label: 'NOTHING ESCAPES YOU',  color: '#00cc44', desc: 'You see what others miss. Perfect anomaly hunter.' },
+  { min: 7,  label: 'SHARP EYES',           color: '#d4a000', desc: 'You caught most of it. The darkness respects you.' },
+  { min: 4,  label: 'CURIOUS OBSERVER',     color: '#888',    desc: 'You looked, but some things hid in plain sight.' },
+  { min: 1,  label: 'OBLIVIOUS',            color: '#555',    desc: 'You wandered through the dark without looking.' },
+  { min: 0,  label: 'COMPLETELY BLIND',     color: '#333',    desc: 'You saw nothing. It saw everything.' },
+];
+
+const getScoreTier = (count) =>
+  SCORE_TIERS.find((t) => count >= t.min) || SCORE_TIERS[SCORE_TIERS.length - 1];
+
+const DIFFICULTY_COLORS = {
+  obvious: '#d4a000',
+  subtle:  '#8b4040',
+  hidden:  '#00aa44',
+};
+
 const PhaseThree = () => {
-  const [stage, setStage] = useState('video');   // 'video' → 'broken'
-  const [msgIndex, setMsgIndex] = useState(0);
-  const [showContact, setShowContact] = useState(false);
-  const [textLines, setTextLines] = useState([]);
+  const { foundAnomalies, totalAnomalies } = useHorror();
+
+  const [stage, setStage]               = useState('video');
+  const [msgIndex, setMsgIndex]         = useState(0);
+  const [showContact, setShowContact]   = useState(false);
+  const [showScore, setShowScore]       = useState(false);
+  const [textLines, setTextLines]       = useState([]);
   const videoRef = useRef(null);
 
-  // Stage 1: play jumpscare video for 2.5s, then transition
+  const foundCount = foundAnomalies.size;
+  const tier = getScoreTier(foundCount);
+
+  // Stage 1 → Stage 2 after 8.1s
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setStage('broken');
-    }, 8100);
+    const timer = setTimeout(() => setStage('broken'), 8100);
     return () => clearTimeout(timer);
   }, []);
 
-  // Stage 2: type out the broken-system text line by line
+  // Type out lines
   useEffect(() => {
     if (stage !== 'broken') return;
 
@@ -59,6 +81,7 @@ const PhaseThree = () => {
       if (i >= lines.length) {
         clearInterval(interval);
         setTimeout(() => setShowContact(true), 600);
+        setTimeout(() => setShowScore(true), 1000);
         return;
       }
       setTextLines((prev) => [...prev, lines[i]]);
@@ -77,18 +100,12 @@ const PhaseThree = () => {
     return () => clearInterval(interval);
   }, [stage]);
 
-
   return (
     <div className="p3-container">
       {/* ── Stage 1: Jumpscare Video ── */}
       {stage === 'video' && (
         <div className="p3-jumpscare">
-          <video
-            ref={videoRef}
-            autoPlay
-            playsInline
-            className="p3-scare-video"
-          >
+          <video ref={videoRef} autoPlay playsInline className="p3-scare-video">
             <source src="/assets/jumpscare.mp4" type="video/mp4" />
           </video>
           <div className="p3-flash-ring" />
@@ -98,12 +115,8 @@ const PhaseThree = () => {
       {/* ── Stage 2: Broken System Terminal ── */}
       {stage === 'broken' && (
         <div className="p3-broken">
-          {/* Spinning glitch header */}
           <div className="p3-glitch-header">
-            <h1
-              className="p3-main-title"
-              data-text={GLITCH_MESSAGES[msgIndex]}
-            >
+            <h1 className="p3-main-title" data-text={GLITCH_MESSAGES[msgIndex]}>
               {GLITCH_MESSAGES[msgIndex]}
             </h1>
             <div className="p3-divider" />
@@ -112,7 +125,7 @@ const PhaseThree = () => {
           {/* Typewriter terminal */}
           <div className="p3-terminal">
             <div className="p3-term-body">
-              {textLines.filter((line) => typeof line === "string").map((line, i) => (
+              {textLines.filter((l) => typeof l === 'string').map((line, i) => (
                 <div
                   key={i}
                   className={`p3-term-line
@@ -125,14 +138,59 @@ const PhaseThree = () => {
                   {line}
                 </div>
               ))}
-              {/* blinking cursor */}
               {textLines.length > 0 && !showContact && (
                 <span className="p3-cursor">█</span>
               )}
             </div>
           </div>
 
-          {/* Final CTA — revealed last */}
+          {/* ── ANOMALY SCORE PANEL ── */}
+          {showScore && (
+            <div className="p3-score-panel">
+              <div className="p3-score-eyebrow">{"// ANOMALY_DETECTION_REPORT"}</div>
+
+              <div className="p3-score-main">
+                <div className="p3-score-fraction" style={{ color: tier.color }}>
+                  <span className="p3-score-num">{foundCount}</span>
+                  <span className="p3-score-sep">/</span>
+                  <span className="p3-score-total">{totalAnomalies}</span>
+                </div>
+                <div className="p3-score-meta">
+                  <div className="p3-score-tier" style={{ color: tier.color }}>{tier.label}</div>
+                  <div className="p3-score-desc">{tier.desc}</div>
+                </div>
+              </div>
+
+              {/* Breakdown grid */}
+              <div className="p3-score-grid">
+                {ANOMALY_REGISTRY.map((anomaly) => {
+                  const found = foundAnomalies.has(anomaly.id);
+                  const col = DIFFICULTY_COLORS[anomaly.difficulty] || '#555';
+                  return (
+                    <div
+                      key={anomaly.id}
+                      className={`p3-score-row ${found ? 'score-row-found' : 'score-row-missed'}`}
+                    >
+                      <span className="p3-score-check" style={{ color: found ? col : '#2a2a2a' }}>
+                        {found ? '◈' : '○'}
+                      </span>
+                      <span className="p3-score-item-label" style={{ color: found ? '#999' : '#333' }}>
+                        {found ? anomaly.label : (anomaly.hint || '???')}
+                      </span>
+                      <span
+                        className="p3-score-diff"
+                        style={{ color: found ? col : '#222' }}
+                      >
+                        {anomaly.difficulty}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Final CTA */}
           {showContact && (
             <div className="p3-cta">
               <div className="p3-cta-inner">
@@ -157,7 +215,6 @@ const PhaseThree = () => {
             </div>
           )}
 
-          {/* Noise overlay */}
           <div className="p3-noise" aria-hidden="true" />
         </div>
       )}
