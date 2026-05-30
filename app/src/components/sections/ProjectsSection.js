@@ -32,7 +32,7 @@ const PROJECTS = [
     title: 'THE PRODIGAL SUN',
     description: 'Shipped a fast-paced 3D rogue-like survival game that secured 1st Position at the Kriti Game Jam 2026. Built within the Unity Engine, the game features custom-scripted C# mechanics and dynamic asset pipelines.',
     tags: ['C#', 'Unity3D', 'Game Dev'],
-    link: '#',
+    link: 'https://github.com/WarriorSFG/psychic-telegram',
     status: 'ARCHIVED',
     // ── ANOMALY: This project is #4 but will render as #000 ──
     anomalyId: true,
@@ -51,7 +51,7 @@ const PROJECTS = [
     description: 'Built a centralized blood donation network that connects eligible donors with hospitals through a real-time interactive map and precise pincode-based matching. The system features secure dual portals for tracking live blood inventory, scheduling, and broadcasting urgent requests.',
     // ── ANOMALY: One tag reads "HELP_ME" ──
     tags: ['React.js', 'Node.js', 'HELP_ME', 'MongoDB'],
-    link: '#',
+    link: 'https://github.com/RedReserveWebHandle/Red-Reserve-Frontend',
     status: 'ARCHIVED',
     anomalyTag: true,
   },
