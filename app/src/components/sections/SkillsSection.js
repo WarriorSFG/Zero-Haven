@@ -212,7 +212,7 @@ const SkillsSection = () => {
             '99.96%ile MHCET',
             'Codeforces Specialist (Max Rating: 1415)',
             'Atlassian Fasttrack Finalist (Top 27 Candidates)',
-            'Top 250 Finalist, Microsoft AI Unlocked 2026',
+            'Top 24 Finalist, Tech-A-Bit, BIT Meshra Hackathon',
             'Stage 2 Candidate, AlgoUniversity Tech Fellowship (Top 8%)',
           ].map((item, i) => (
             <div
