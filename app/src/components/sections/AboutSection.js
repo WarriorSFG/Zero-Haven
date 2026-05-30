@@ -20,7 +20,7 @@ const AboutSection = () => {
     { label: 'GitHub',     href: 'https://github.com/WarriorSFG' },
     { label: 'LinkedIn',   href: 'https://linkedin.com/in/samarthgupta9999' },
     { label: 'Codeforces', href: 'https://codeforces.com/profile/WarriorSFG' },
-    { label: 'Dribbble',   href: 'https://dribbble.com/samarthgupta' },
+    { label: 'Dribbble',   href: '#' },
   ];
 
   const corruptedBio = horrorLevel >= 6
