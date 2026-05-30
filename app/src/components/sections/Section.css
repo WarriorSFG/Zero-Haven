@@ -895,3 +895,47 @@ a.info-value:hover { color: #ccc; }
 .anomaly-lore-found {
   border-left-color: rgba(0, 170, 68, 0.4) !important;
 }
+/* ══════════════════════════════
+   MOBILE & LANDSCAPE RESPONSIVENESS
+══════════════════════════════ */
+@media (max-width: 900px) {
+  .about-grid, 
+  .projects-grid, 
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .skills-grid-ghost {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  .ghost-category {
+    grid-column: auto; /* Resets the 4th column placement */
+  }
+}
+
+@media (max-width: 600px) {
+  .skills-grid,
+  .skills-grid-ghost {
+    grid-template-columns: 1fr !important;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+  }
+
+  .section-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .exp-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+}

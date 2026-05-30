@@ -219,3 +219,66 @@
   from { opacity: 0.7; }
   to   { opacity: 1; }
 }
+
+/* ══════════════════════════════
+   PHASE TWO: MOBILE & LANDSCAPE
+══════════════════════════════ */
+
+/* Mobile Portrait Layout */
+@media (max-width: 768px) {
+  .p2-container {
+    flex-direction: column;
+  }
+
+  .p2-sidebar {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  /* Make navigation scroll horizontally on phones */
+  .p2-nav {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    white-space: nowrap;
+    scrollbar-width: none; /* Hide scrollbar for cleaner look */
+  }
+  
+  .p2-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .p2-nav-btn {
+    width: auto;
+    flex-shrink: 0;
+    padding: 0.5rem 1rem;
+  }
+
+  /* Hide heavier sidebar elements on small screens to prioritize content */
+  .p2-anomaly-score, 
+  .p2-horror-meter, 
+  .p2-sidebar-footer {
+    display: none;
+  }
+
+  .p2-section-wrap {
+    padding: 1.5rem;
+  }
+}
+
+/* Mobile Landscape (e.g., turned sideways) */
+@media (max-height: 500px) and (orientation: landscape) {
+  .p2-sidebar {
+    overflow-y: auto; /* Allows sidebar to scroll if it's too tall */
+    scrollbar-width: thin;
+    padding: 1rem;
+  }
+  
+  .p2-section-wrap {
+    padding: 1.5rem;
+  }
+}
