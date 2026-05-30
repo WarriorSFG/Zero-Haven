@@ -2,6 +2,13 @@ import React, { createContext, useContext, useState, useRef, useCallback } from 
 
 const HorrorContext = createContext(null);
 
+// Scary subliminal image files in /public/assets/
+const SCARY_IMAGES = [
+  '/assets/scary1.jpg',
+  '/assets/scary2.jpg',
+  '/assets/scary3.jpg',
+];
+
 export const HorrorProvider = ({ children }) => {
   const [horrorLevel, setHorrorLevel] = useState(0);       // 0–10 scale
   const [isJumpscare, setIsJumpscare] = useState(false);
@@ -16,20 +23,13 @@ export const HorrorProvider = ({ children }) => {
   const scareAudioRef = useRef(null);
   const interactionCount = useRef(0);
 
-  // Scary subliminal images (put your actual files in /public/assets/)
-  const scaryImages = [
-    '/assets/scary1.jpg',
-    '/assets/scary2.jpg',
-    '/assets/scary3.jpg',
-  ];
-
   const triggerGlitch = useCallback((duration = 300) => {
     setGlitchActive(true);
     setTimeout(() => setGlitchActive(false), duration);
   }, []);
 
   const flashScaryImage = useCallback(() => {
-    const img = scaryImages[Math.floor(Math.random() * scaryImages.length)];
+    const img = SCARY_IMAGES[Math.floor(Math.random() * SCARY_IMAGES.length)];
     setFlashImage(img);
     setTimeout(() => setFlashImage(null), 120 + Math.random() * 200); // 80–200ms flash
   }, []);
