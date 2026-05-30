@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { HorrorProvider, useHorror } from './context/HorrorContext';
 import PhaseOne from './components/PhaseOne';
 import PhaseTwo from './components/PhaseTwo';
@@ -31,6 +32,7 @@ const AppInner = () => {
 const App = () => (
   <HorrorProvider>
     <AppInner />
+    <Analytics />
   </HorrorProvider>
 );
 
